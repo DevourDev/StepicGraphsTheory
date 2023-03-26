@@ -1,7 +1,12 @@
-﻿namespace GraphsTheory
+﻿namespace GraphsTheory.Helpers
 {
     public static class InputHelpers
     {
+        private const int _bufferSize = 1024;
+
+        private static readonly int[] _intsBuffer = new int[_bufferSize];
+
+
         public static int ReadIntFromConsole()
         {
             return int.Parse(Console.ReadLine()!);
@@ -36,6 +41,13 @@
             }
 
             return count;
+        }
+
+
+        public static ReadOnlyMemory<int> ReadIntsFromConsole()
+        {
+            int count = ReadIntsArrayFromConsoleNonAlloc(_intsBuffer);
+            return _intsBuffer.AsMemory(0, count);
         }
     }
 }

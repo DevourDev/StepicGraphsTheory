@@ -1,4 +1,7 @@
-﻿namespace GraphsTheory
+﻿using GraphsTheory.Edges;
+using GraphsTheory.Helpers;
+
+namespace GraphsTheory.Lessons
 {
     internal class Lesson2
     {
@@ -54,7 +57,7 @@
         {
             var matrix = GraphsHelpers.ReadMatrixFromConsole();
 
-            int[] nodePowers = DetectNodePowersInternal(matrix);
+            int[] nodePowers = GraphsHelpers.GetNodePowers(matrix);
 
             int evensCount = 0;
             int oddsCount = 0;
@@ -70,33 +73,6 @@
             Console.WriteLine($"{evensCount} {oddsCount}");
         }
 
-        private static int[] DetectNodePowersInternal(int[][] matrix)
-        {
-            var nodesCount = matrix.Length;
-
-            int[] nodePowers = new int[nodesCount];
-
-            for (int rowIndex = 0; rowIndex < nodesCount; rowIndex++)
-            {
-                var row = matrix[rowIndex];
-
-                int edgesCount = 0;
-
-                foreach (var connection in row)
-                {
-                    if (connection == 1)
-                        ++edgesCount;
-                }
-
-                //loop grants +2 power
-                if (row[rowIndex] == 1)
-                    ++edgesCount;
-
-                nodePowers[rowIndex] = edgesCount;
-            }
-
-            return nodePowers;
-        }
 
 
         public static void Step11()
@@ -199,7 +175,7 @@
 
             for (int i = 0; i < edgesCount; i++)
             {
-                edges[i] = GraphsHelpers.ReadGraphEdgeFromConsole();
+                edges[i] = GraphsHelpers.ReadUniversalGraphEdgeFromConsole();
             }
 
             //number (1, 2, 3...) to index (0, 1, 2...)

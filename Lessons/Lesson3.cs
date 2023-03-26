@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GraphsTheory.Edges;
+using GraphsTheory.Helpers;
 
-namespace GraphsTheory
+namespace GraphsTheory.Lessons
 {
     internal class Lesson3
     {
@@ -24,7 +26,7 @@ namespace GraphsTheory
 
             for (int i = 0; i < m; i++)
             {
-                edges[i] = GraphsHelpers.ReadGraphEdgeFromConsole(true);
+                edges[i] = GraphsHelpers.ReadUniversalGraphEdgeFromConsole(true);
             }
 
             for (int i = 0; i < m; i++)
@@ -68,6 +70,31 @@ namespace GraphsTheory
             {
                 Console.WriteLine(edge.ToStringSimple(true));
             }
+        }
+
+
+        public static void Step5()
+        {
+            var nmSpan = InputHelpers.ReadIntsFromConsole().Span;
+            int nodesCount = nmSpan[0];
+            int edgesCount = nmSpan[1];
+
+            IGraphEdge[] edges = new IGraphEdge[edgesCount];
+
+            for (int i = 0; i < edgesCount; i++)
+            {
+                edges[i] = GraphsHelpers.ReadUniversalGraphEdgeFromConsole();
+            }
+
+            var powers = GraphsHelpers.GetNodePowers(edges, nodesCount, true);
+            HashSet<int> differentPowersHs = new(nodesCount);
+
+            foreach (var power in powers)
+            {
+                _ = differentPowersHs.Add(power);
+            }
+
+            Console.WriteLine(differentPowersHs.Count);
         }
     }
 }

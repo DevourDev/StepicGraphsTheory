@@ -1,6 +1,8 @@
-﻿namespace GraphsTheory
+﻿using GraphsTheory.Edges;
+
+namespace GraphsTheory.Helpers
 {
-    internal static class GraphsHelpers
+    public static class GraphsHelpers
     {
         private const int _bufferSize = 1024;
 
@@ -27,6 +29,69 @@
         public static bool IsMatrixValid(int[][] matrix)
         {
             return matrix != null && matrix.Length != 0 && matrix[0].Length == matrix.Length;
+        }
+
+        public static int[] GetNodePowers(int[][] matrix)
+        {
+            var nodesCount = matrix.Length;
+
+            int[] nodePowers = new int[nodesCount];
+
+            for (int rowIndex = 0; rowIndex < nodesCount; rowIndex++)
+            {
+                var row = matrix[rowIndex];
+
+                int edgesCount = 0;
+
+                foreach (var connection in row)
+                {
+                    if (connection == 1)
+                        ++edgesCount;
+                }
+
+                //loop grants +2 power
+                if (row[rowIndex] == 1)
+                    ++edgesCount;
+
+                nodePowers[rowIndex] = edgesCount;
+            }
+
+            return nodePowers;
+        }
+
+        public static TEdge[] NormalizeGraphEdges<TEdge>(TEdge[] source)
+            where TEdge : IGraphEdge
+        {
+            if (typeof(TEdge) == typeof(DirectionalGraphEdge))
+            {
+                var copy = (TEdge[])source.Clone();
+                Array.Sort(copy);
+                return copy;
+            }
+
+            //sort and delete repeating
+
+            throw new NotImplementedException();
+        }
+
+        public static int[] GetNodePowers(IGraphEdge[] edges, int nodesCount, bool fromHumanOrder)
+        {
+            int[] powers = new int[nodesCount];
+
+            foreach (var edge in edges)
+            {
+                if (fromHumanOrder)
+                {
+                    ++powers[edge.From - 1];
+                    ++powers[edge.To - 1];
+                    continue;
+                }
+
+                ++powers[edge.From];
+                ++powers[edge.To];
+            }
+
+            return powers;
         }
 
 
@@ -56,8 +121,7 @@
             return arr;
         }
 
-
-        public static UniversalGraphEdge ReadGraphEdgeFromConsole(bool toIndex = false)
+        public static UniversalGraphEdge ReadUniversalGraphEdgeFromConsole(bool toIndex = false)
         {
             string input = Console.ReadLine()!;
             string[] splitted = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);

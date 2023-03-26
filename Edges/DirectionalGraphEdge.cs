@@ -1,16 +1,21 @@
-﻿namespace GraphsTheory
+﻿namespace GraphsTheory.Edges
 {
-    public readonly struct DirectionalGraphEdge : IEquatable<DirectionalGraphEdge>, IComparable<DirectionalGraphEdge>
+    public readonly struct DirectionalGraphEdge : IGraphEdge, IEquatable<DirectionalGraphEdge>, IComparable<DirectionalGraphEdge>
     {
-        public readonly int From;
-        public readonly int To;
+        private readonly int _from;
+        private readonly int _to;
 
 
         public DirectionalGraphEdge(int from, int to)
         {
-            From = from;
-            To = to;
+            _from = from;
+            _to = to;
         }
+
+
+        public int From => _from;
+        public int To => _to;
+
 
         public override bool Equals(object? obj)
         {
@@ -19,12 +24,12 @@
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(From, To);
+            return HashCode.Combine(_from, _to);
         }
 
         public bool Equals(DirectionalGraphEdge other)
         {
-            return other.From == From && other.To == To;
+            return other._from == _from && other._to == _to;
         }
 
         public static bool operator ==(DirectionalGraphEdge left, DirectionalGraphEdge right)
@@ -59,16 +64,16 @@
 
         public int CompareTo(DirectionalGraphEdge other)
         {
-            if (From < other.From)
+            if (_from < other._from)
                 return -1;
 
-            if (From > other.From)
+            if (_from > other._from)
                 return 1;
 
-            if (To < other.To)
+            if (_to < other._to)
                 return -1;
 
-            if (To > other.To)
+            if (_to > other._to)
                 return 1;
 
             return 0;
@@ -76,15 +81,15 @@
 
         public override string ToString()
         {
-            return $"[{From}, {To}]";
+            return $"[{_from}, {_to}]";
         }
 
         public string ToStringSimple(bool indexToHumanOrder = false)
         {
             if (indexToHumanOrder)
-                return $"{From + 1} {To + 1}";
+                return $"{_from + 1} {_to + 1}";
 
-            return $"{From} {To}";
+            return $"{_from} {_to}";
         }
     }
 }

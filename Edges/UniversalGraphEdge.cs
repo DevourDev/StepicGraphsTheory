@@ -1,34 +1,38 @@
-﻿namespace GraphsTheory
+﻿namespace GraphsTheory.Edges
 {
-    public readonly struct UniversalGraphEdge : IEquatable<UniversalGraphEdge>, IComparable<UniversalGraphEdge>
+    public readonly struct UniversalGraphEdge : IGraphEdge, IEquatable<UniversalGraphEdge>, IComparable<UniversalGraphEdge>
     {
-        public readonly int From;
-        public readonly int To;
+        private readonly int _from;
+        private readonly int _to;
 
 
         public UniversalGraphEdge(int from, int to)
         {
-            From = from;
-            To = to;
+            _from = from;
+            _to = to;
         }
 
 
-        public bool EqualFrom(UniversalGraphEdge other) => other.From == From;
+        public int From => _from;
+        public int To => _to;
 
-        public bool EqualTo(UniversalGraphEdge other) => other.To == To;
+
+        public bool EqualFrom(UniversalGraphEdge other) => other._from == _from;
+
+        public bool EqualTo(UniversalGraphEdge other) => other._to == _to;
 
         public bool EqualAny(UniversalGraphEdge other)
-            => other.From == From || other.To == To
-            || other.From == To || other.To == From;
+            => other._from == _from || other._to == _to
+            || other._from == _to || other._to == _from;
 
         public bool EqualNonDirectional(UniversalGraphEdge other)
-            => (other.From == From && other.To == To)
-            || (other.From == To && other.To == From);
+            => other._from == _from && other._to == _to
+            || other._from == _to && other._to == _from;
 
 
         public static implicit operator (int a, int b)(UniversalGraphEdge value)
         {
-            return (value.From, value.To);
+            return (value._from, value._to);
         }
 
         public static implicit operator UniversalGraphEdge((int a, int b) value)
@@ -39,20 +43,20 @@
 
         public override string ToString()
         {
-            return $"[{From}, {To}]";
+            return $"[{_from}, {_to}]";
         }
 
         public string ToStringSimple(bool indexToHumanOrder = false)
         {
             if (indexToHumanOrder)
-                return $"{From + 1} {To + 1}";
+                return $"{_from + 1} {_to + 1}";
 
-            return $"{From} {To}";
+            return $"{_from} {_to}";
         }
 
         public bool Equals(UniversalGraphEdge other)
         {
-            return other.From == From && other.To == To;
+            return other._from == _from && other._to == _to;
         }
 
         public override bool Equals(object? obj)
@@ -62,16 +66,16 @@
 
         public int CompareTo(UniversalGraphEdge other)
         {
-            if (From < other.From)
+            if (_from < other._from)
                 return -1;
 
-            if (From > other.From)
+            if (_from > other._from)
                 return 1;
 
-            if (To < other.To)
+            if (_to < other._to)
                 return -1;
 
-            if (To > other.To)
+            if (_to > other._to)
                 return 1;
 
             return 0;
@@ -79,25 +83,25 @@
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(From, To);
+            return HashCode.Combine(_from, _to);
         }
 
         public int GetNonDirHashCode()
         {
-            if (From > To)
-                return HashCode.Combine(To, From);
+            if (_from > _to)
+                return HashCode.Combine(_to, _from);
 
-            return HashCode.Combine(From, To); //to prevent GetHashCode() sealing
+            return HashCode.Combine(_from, _to); //to prevent GetHashCode() sealing
         }
 
         public DirectionalGraphEdge ToDirectional()
         {
-            return new DirectionalGraphEdge(From, To);
+            return new DirectionalGraphEdge(_from, _to);
         }
 
         public NonDirectionalGraphEdge ToNonDirectional()
         {
-            return new NonDirectionalGraphEdge(From, To);
+            return new NonDirectionalGraphEdge(_from, _to);
         }
 
         public static bool operator ==(UniversalGraphEdge left, UniversalGraphEdge right)

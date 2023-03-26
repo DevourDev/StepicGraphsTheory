@@ -1,4 +1,4 @@
-﻿namespace GraphsTheory
+﻿namespace GraphsTheory.Edges
 {
     public readonly struct NonDirectionalGraphEdge : IEquatable<NonDirectionalGraphEdge>, IComparable<NonDirectionalGraphEdge>
     {
@@ -18,8 +18,8 @@
         }
 
         public bool Equals(NonDirectionalGraphEdge other)
-            => (other.From == From && other.To == To)
-            || (other.From == To && other.To == From);
+            => other.From == From && other.To == To
+            || other.From == To && other.To == From;
 
 
         public static bool operator ==(NonDirectionalGraphEdge left, NonDirectionalGraphEdge right)
