@@ -239,6 +239,43 @@ namespace GraphsTheory
             return incidentalEdgeIndices[..incidentalEdgesCount].ToArray();
         }
 
+        public static void Step13()
+        {
+            var originMatrix = GraphsHelpers.ReadMatrixFromConsole();
+
+            var additionMatrix = ReverseGraphMatrix(originMatrix, true);
+
+            GraphsHelpers.PrintGraphMatrixToConsole(additionMatrix, true);
+        }
+
+
+        private static int[][] ReverseGraphMatrix(int[][] originMatrix, bool ignoreSelfCells)
+        {
+            var copy = GraphsHelpers.CopyMatrix(originMatrix);
+
+            int size = originMatrix.Length;
+
+            for (int rowIndex = 0; rowIndex < size; rowIndex++)
+            {
+                var row = copy[rowIndex];
+
+                for (int colIndex = 0; colIndex < size; colIndex++)
+                {
+                    if (ignoreSelfCells && rowIndex == colIndex)
+                        continue;
+
+                    row[colIndex] = ReverseMatrixValue(row[colIndex]);
+                }
+            }
+
+            return copy;
+        }
+
+
+        private static int ReverseMatrixValue(int source)
+        {
+            return source == 0 ? 1 : 0;
+        }
 
     }
 }

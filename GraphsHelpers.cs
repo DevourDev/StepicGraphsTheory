@@ -36,5 +36,52 @@
 
             return new(from, to);
         }
+
+
+        public static void PrintGraphMatrixToConsole(int[][] matrix, bool addTrailingSpaces)
+        {
+            if (!IsMatrixValid(matrix))
+                return;
+
+            int columnsCount = matrix[0].Length;
+
+            foreach (var row in matrix)
+            {
+                for (int i = 0; i < columnsCount; i++)
+                {
+                    if (i > 0)
+                        Console.Write(' ');
+
+                    Console.Write(row[i]);
+                }
+
+                if (addTrailingSpaces)
+                    Console.WriteLine(' ');
+            }
+        }
+
+
+        public static int[][] CopyMatrix(int[][] origin)
+        {
+            var rowsCount = origin.Length;
+
+            int[][] copy = new int[rowsCount][];
+
+            for (int i = 0; i < rowsCount; i++)
+            {
+                var row = origin[i];
+                var colsCount = row.Length;
+
+                var copyRow = new int[colsCount];
+                copy[i] = copyRow;
+
+                for (int j = 0; j < colsCount; j++)
+                {
+                    copyRow[j] = row[j];
+                }
+            }
+
+            return copy;
+        }
     }
 }
