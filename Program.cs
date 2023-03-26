@@ -3,4 +3,4 @@ using GraphsTheory;
 
 Console.WriteLine("Hello, World!");
 
-OneDotThree.Step12();
+Lesson3.Step1();

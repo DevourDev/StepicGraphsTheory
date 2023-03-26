@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace GraphsTheory
+﻿namespace GraphsTheory
 {
-    internal class OneDotThree
+    internal class Lesson2
     {
         public static void Step8()
         {
@@ -197,7 +195,7 @@ namespace GraphsTheory
             int nodesCount = arr[0];
             int edgesCount = arr[1];
 
-            GraphEdge[] edges = new GraphEdge[edgesCount];
+            UniversalGraphEdge[] edges = new UniversalGraphEdge[edgesCount];
 
             for (int i = 0; i < edgesCount; i++)
             {
@@ -212,7 +210,7 @@ namespace GraphsTheory
         }
 
 
-        private static int[] FindIncidentalEdges(GraphEdge[] allEdges, int originEdgeIndex)
+        private static int[] FindIncidentalEdges(UniversalGraphEdge[] allEdges, int originEdgeIndex)
         {
             int allEdgesCount = allEdges.Length;
 
@@ -222,7 +220,7 @@ namespace GraphsTheory
 
             int incidentalEdgesCount = 0;
 
-            GraphEdge originEdge = allEdges[originEdgeIndex];
+            UniversalGraphEdge originEdge = allEdges[originEdgeIndex];
 
             for (int i = 0; i < allEdgesCount; i++)
             {
