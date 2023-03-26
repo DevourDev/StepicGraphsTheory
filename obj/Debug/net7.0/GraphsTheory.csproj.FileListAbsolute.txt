@@ -1,0 +1,15 @@
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\bin\Debug\net7.0\GraphsTheory.exe
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\bin\Debug\net7.0\GraphsTheory.deps.json
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\bin\Debug\net7.0\GraphsTheory.runtimeconfig.json
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\bin\Debug\net7.0\GraphsTheory.dll
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\bin\Debug\net7.0\GraphsTheory.pdb
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.csproj.AssemblyReference.cache
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.GeneratedMSBuildEditorConfig.editorconfig
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.AssemblyInfoInputs.cache
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.AssemblyInfo.cs
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.csproj.CoreCompileInputs.cache
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.dll
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\refint\GraphsTheory.dll
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.pdb
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\GraphsTheory.genruntimeconfig.cache
+G:\DotNetProjects\Stepik\GraphsTheory\GraphsTheory\obj\Debug\net7.0\ref\GraphsTheory.dll
